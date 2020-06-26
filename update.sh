@@ -66,7 +66,8 @@ function publish {
     TAG=$2
 
     echo "** publish wengerk/drupal-for-contrib:$TAG"
-    docker push wengerk/drupal-for-contrib:$TAG
+    cd ./$1/$2/
+    [[ -f ./Makefile ]] && make release
   )
 }
 

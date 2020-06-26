@@ -19,3 +19,9 @@ script:
   - cd "${DOCKER_TAG%%.*}/${DOCKER_TAG}"
   - make
   - make test
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin;
+    [[ -f ./Makefile ]] && make release;
+    fi
