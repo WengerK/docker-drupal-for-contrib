@@ -1,5 +1,9 @@
 # Drupal Docker Container for Contributions
 
+[![Build Status](https://travis-ci.com/wengerk/docker-drupal-for-contrib.svg?branch=master)](https://travis-ci.com/github/WengerK/docker-drupal-for-contrib)
+[![Docker Pulls](https://img.shields.io/docker/pulls/wengerk/drupal-for-contrib.svg)](https://hub.docker.com/r/wengerk/drupal-for-contrib)
+[![Docker Stars](https://img.shields.io/docker/stars/wengerk/drupal-for-contrib.svg)](https://hub.docker.com/r/wengerk/drupal-for-contrib)
+
 Many Drupal Docker images exists on [Docker Hub](https://hub.docker.com/search?q=drupal&type=image). So why another image ?
 All of those images serve the same purpose, **integrate Docker into a complete Drupal project**. 
 
@@ -10,13 +14,13 @@ With this Docker image, I want to highly simplify this process by having a conta
 
 ## Docker Images
 
-❗For better reliability we release images with stability tags (`wengerk/docker-drupal-for-contrib:9.X`) which **does not correspond** to [git tags](https://github.com/wengerk/docker-drupal-for-contrib/releases). We strongly recommend using images only with stability tags. 
+❗For better reliability we release images with stability tags (`wengerk/drupal-for-contrib:9.X`) which **does not correspond** to [git tags](https://github.com/wengerk/docker-drupal-for-contrib/releases). We strongly recommend using images only with stability tags. 
 
 Overview:
 
 * All images based on the [official Drupal Docker](https://github.com/docker-library/drupal) maintained by: the Docker Community.
 * [Travis CI builds](https://travis-ci.com/github/WengerK/docker-drupal-for-contrib) 
-* [Docker Hub](https://hub.docker.com/r/wengerk/docker-drupal-for-contrib)
+* [Docker Hub](https://hub.docker.com/r/wengerk/drupal-for-contrib)
 
 | Supported tags and respective `Dockerfile` links                                                          | Drupal   |
 | --------------------------------------------------------------------------------------------------------- | -------- |
@@ -31,7 +35,7 @@ Overview:
 
     ```
     ARG BASE_IMAGE_TAG=8.9.0
-    FROM wengerk/docker-drupal-for-contrib:${BASE_IMAGE_TAG}
+    FROM wengerk/drupal-for-contrib:${BASE_IMAGE_TAG}
     ```
 
 2. Create a `docker-compose.yml` file at the root level of your repository

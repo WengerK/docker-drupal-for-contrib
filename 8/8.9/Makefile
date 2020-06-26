@@ -3,7 +3,7 @@ DRUPAL_VER_MAJOR ?= $(shell echo "${DRUPAL_VER}" | grep -oE '^[0-9]+\.[0-9]+')
 
 BASE_IMAGE_TAG = 8.9.1
 
-REPO = wengerk/docker-drupal-for-contrib
+REPO = wengerk/drupal-for-contrib
 NAME = drupal-$(DRUPAL_VER_MAJOR)
 
 TAG ?= $(DRUPAL_VER_MAJOR)
