@@ -1,0 +1,21 @@
+language: bash
+
+services:
+  - docker
+
+matrix:
+  include:
+    - name: Drupal 8.8.9
+      env: DOCKER_TAG="8.8"
+    - name: Drupal 8.9.1
+      env: DOCKER_TAG="8.9"
+    - name: Drupal 9.0.1
+      env: DOCKER_TAG="9.0"
+    - name: Drupal 9.1-dev
+      env: DOCKER_TAG="9.1"
+
+script:
+  - set -e
+  - cd "${DOCKER_TAG%%.*}/${DOCKER_TAG}"
+  - make
+  - make test
