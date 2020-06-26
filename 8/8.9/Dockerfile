@@ -1,6 +1,10 @@
 ARG BASE_IMAGE_TAG
 FROM drupal:${BASE_IMAGE_TAG}-apache
 
+ARG DRUPAL_VER
+
+ENV DRUPAL_VER="${DRUPAL_VER}"
+
 WORKDIR /var/www/html
 
 # Install git and zip library.
@@ -28,7 +32,7 @@ RUN curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer
 
 # Install Drupal Dev dependencies such as PHPUnit, Behat-Mink, ...
-#RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev drupal/core-dev:^${BASE_IMAGE_TAG}
+RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev drupal/core-dev:^${DRUPAL_VER}
 
 # Install Drush.
 # Drush will be heavily use to setup a working Drupal environment.
