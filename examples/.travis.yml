@@ -1,0 +1,36 @@
+language: php
+
+services:
+  - docker
+
+env:
+  global:
+    # The module name to be mounted and tested in the Docker.
+    - MODULE_NAME="my_module"
+
+matrix:
+  include:
+    - name: Drupal 8.8.x
+      env: BASE_IMAGE_TAG="8.8"
+    - name: Drupal 8.9.x
+      env: BASE_IMAGE_TAG="8.9"
+    - name: Drupal 9.0.x
+      env: BASE_IMAGE_TAG="9.0"
+    - name: Drupal 9.1.x-dev
+      env: BASE_IMAGE_TAG="9.1"
+  allow_failures:
+      env: BASE_IMAGE_TAG="9.1"
+
+before_install:
+  - docker-compose build --pull --build-arg BASE_IMAGE_TAG=${BASE_IMAGE_TAG} drupal
+  - docker-compose up -d drupal
+  # - docker-compose up -d drupal chrome
+  # wait on Docker to be ready, especially MariaDB that takes many seconds to be up.
+  - docker-compose exec drupal wait-for-it drupal:80 -t 60
+  - docker-compose exec drupal wait-for-it db:3306 -t 60
+
+before_script:
+  - docker-compose exec -u www-data drupal drush site-install standard --db-url="mysql://drupal:drupal@db/drupal" --site-name=Example -y
+
+script:
+  - docker-compose exec -u www-data drupal phpunit --no-coverage --group=${MODULE_NAME}

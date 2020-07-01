@@ -1,0 +1,47 @@
+version: '3.6'
+
+services:
+
+  drupal:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - 8888:80
+    volumes:
+      # Mount the module in the proper contrib module directory.
+      - .:/var/www/html/modules/contrib/my_module
+      # Mount the Drupal PHPUnit configuration file.
+      - ./phpunit.xml:/var/www/html/phpunit.xml
+    restart: always
+
+  db:
+    image: mariadb:10.3.7
+    environment:
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+      MYSQL_DATABASE: drupal
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
+
+  chrome:
+    image: drupalci/webdriver-chromedriver:production
+    depends_on:
+      - drupal
+    ulimits:
+      core:
+        soft: -1
+        hard: -1
+    cap_add:
+      - SYS_ADMIN
+    ports:
+      - "4444:4444"
+      - "9515:9515"
+    volumes:
+      - /dev/shm:/dev/shm
+    entrypoint:
+      - chromedriver
+      - "--no-sandbox"
+      - "--log-path=/tmp/chromedriver.log"
+      - "--verbose"
+      - "--whitelisted-ips="
