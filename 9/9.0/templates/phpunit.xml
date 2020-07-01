@@ -23,9 +23,10 @@
     <!-- Do not limit the amount of memory tests take to run. -->
     <ini name="memory_limit" value="-1"/>
     <!-- Example SIMPLETEST_BASE_URL value: http://localhost -->
-    <env name="SIMPLETEST_BASE_URL" value="http://localhost:80"/>
+    <env name="SIMPLETEST_BASE_URL" value="http://drupal"/>
     <env name="SIMPLETEST_DB" value="mysql://drupal:drupal@db/drupal"/>
     <env name="BROWSERTEST_OUTPUT_DIRECTORY" value="/var/wtww/html/sites/default/files/simpletest/browser_output"/>
+    <env name="MINK_DRIVER_ARGS_WEBDRIVER" value='["chrome", {"browserName":"chrome","chromeOptions":{"args":["--disable-gpu","--headless"]}}, "http://chrome:9515"]'/>
     <!-- To disable deprecation testing completely uncomment the next line. -->
     <!-- <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled"/> -->
     <!-- Example for changing the driver class for mink tests MINK_DRIVER_CLASS value: 'Drupal\FunctionalJavascriptTests\DrupalSelenium2Driver' -->
