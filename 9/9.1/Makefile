@@ -1,7 +1,7 @@
 DRUPAL_VER ?= 9.1
 DRUPAL_VER_MAJOR ?= $(shell echo "${DRUPAL_VER}" | grep -oE '^[0-9]+\.[0-9]+')
 
-BASE_IMAGE_TAG = 8.9.1
+BASE_IMAGE_TAG = 9.0.3
 
 REPO = wengerk/drupal-for-contrib
 NAME = drupal-$(DRUPAL_VER_MAJOR)
