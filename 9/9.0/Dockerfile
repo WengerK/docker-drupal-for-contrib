@@ -44,4 +44,4 @@ RUN curl -OL https://github.com/drush-ops/drush-launcher/releases/latest/downloa
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Copy a default template for PHPUnit testing.
-COPY templates/phpunit.xml /var/www/html/phpunit.xml
+COPY templates/phpunit.xml /opt/drupal/web/phpunit.xml

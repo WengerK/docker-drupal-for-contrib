@@ -49,4 +49,4 @@ RUN COMPOSER_MEMORY_LIMIT=-1 composer update
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Copy a default template for PHPUnit testing.
-COPY templates/phpunit.xml /var/www/html/phpunit.xml
+COPY templates/phpunit.xml /opt/drupal/web/phpunit.xml
