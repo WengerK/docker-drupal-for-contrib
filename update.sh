@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-VERSION_TO_UPDATE="all"
 D8_LAST_VERSION=$(find ./8/* -maxdepth 1 -prune -type d -exec basename {} \; | sort -n | tail -n 1)
 D9_LAST_VERSION=$(find ./9/* -maxdepth 1 -prune -type d -exec basename {} \; | sort -n | tail -n 1)
 
@@ -26,7 +25,6 @@ while [ $# -gt 0 ]; do
       if [ "$1" = "--build" ] || [ "$1" = "-b" ]; then
         VERSION_TO_BUILD="all"
       fi
-      VERSION_TO_UPDATE=$VERSION_TO_BUILD
       ;;
     --publish=*)
       VERSION_TO_PUBLISH="${1#*=}"
@@ -35,7 +33,6 @@ while [ $# -gt 0 ]; do
         exit 1
       fi
       VERSION_TO_BUILD=$VERSION_TO_PUBLISH
-      VERSION_TO_UPDATE=$VERSION_TO_PUBLISH
       ;;
     -t|--test*)
       VERSION_TO_TEST="${1#*=}"
