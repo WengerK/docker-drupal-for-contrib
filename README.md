@@ -53,7 +53,7 @@ Overview:
           - 8888:80
         volumes:
           # Mount the module in the proper contrib module directory.
-          - .:/var/www/html/modules/contrib/my_module
+          - .:/opt/drupal/web/modules/contrib/my_module
         restart: always
     
       db:
