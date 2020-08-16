@@ -118,5 +118,5 @@ before_script:
   - docker-compose exec -u www-data drupal drush site-install standard --db-url="mysql://drupal:drupal@db/drupal" --site-name=Example -y
 
 script:
-  - docker-compose exec -u www-data drupal phpunit --no-coverage --group=${MODULE_NAME}
+  - docker-compose exec -u www-data drupal phpunit --no-coverage --group=${MODULE_NAME} --configuration=/opt/drupal/web/phpunit.xml
 ```
