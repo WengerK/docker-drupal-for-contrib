@@ -5,7 +5,7 @@ ARG DRUPAL_VER
 
 ENV DRUPAL_VER="${DRUPAL_VER}"
 
-WORKDIR /var/www/html
+WORKDIR /opt/drupal
 
 # Install git and zip library.
 # Necessary for some composer operations.
@@ -23,16 +23,8 @@ RUN curl -OL https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait
     chmod +x wait-for-it.sh && \
     mv wait-for-it.sh /usr/local/bin/wait-for-it
 
-# Add Composer vendors directory to the path.
-# So we would be able to run binary without specifying ./vendor/bin/.
-ENV PATH /var/www/html/vendor/bin:$PATH
-
-# Install Composer.
-RUN curl -sS https://getcomposer.org/installer | php && \
-    mv composer.phar /usr/local/bin/composer
-
 # Install Drupal Dev dependencies such as PHPUnit, Behat-Mink, ...
-RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev drupal/core-dev:^${DRUPAL_VER}
+RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev drupal/core-dev:~${DRUPAL_VER}
 
 # Install Drush.
 # Drush will be heavily use to setup a working Drupal environment.
@@ -48,4 +40,4 @@ RUN curl -OL https://github.com/drush-ops/drush-launcher/releases/latest/downloa
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Copy a default template for PHPUnit testing.
-COPY templates/phpunit.xml /var/www/html/phpunit.xml
+COPY templates/phpunit.xml /opt/drupal/web/phpunit.xml

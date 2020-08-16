@@ -29,6 +29,7 @@ Each version-directory is composed of a specific `Makefile` when the whole pull/
 Therefore, you can use those `Makefile` files to:
 
 * `build`: Build the image;
+* `build-nc`: Build the image without caches and pull the base image from remote;
 * `test`: Test the image;
 * `push`: Push the image on Docker hub;
 * `shell`: Run a shell inside the image for debugging;
@@ -66,3 +67,8 @@ Example to run the Drupal 9.0 tests-suits:
 ```shell
 cd ./9/9.0 && make build && make test
 ```
+
+You can also use the root `./update.sh [-t|--test=]` command to run the tests (useful for bulk tests):
+
+    ./update.sh --test=<8.8|9.0|all|latest>
+    ./update.sh -t

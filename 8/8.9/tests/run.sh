@@ -12,9 +12,9 @@ cid="$(
 )"
 trap "docker rm -vf ${cid} > /dev/null" EXIT
 
-docker exec "${cid}" drush status | grep -q 'Drupal root    : /var/www/html'
-docker exec "${cid}" drush status | grep -q 'Drupal version : 8.9.1'
+docker exec "${cid}" drush status | grep -q 'Drupal root    : /opt/drupal/web'
+docker exec "${cid}" drush status | grep -q 'Drupal version : 8.9.'
 docker exec "${cid}" drush status | grep -q 'Drush version  : 10.'
-docker exec "${cid}" which phpunit | grep -q '/var/www/html/vendor/bin/phpunit'
+docker exec "${cid}" which phpunit | grep -q '/opt/drupal/vendor/bin/phpunit'
 docker exec "${cid}" phpunit --version | grep -q 'PHPUnit 7.5.20 by Sebastian Bergmann and contributors.'
 echo "OK"

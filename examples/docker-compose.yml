@@ -10,9 +10,9 @@ services:
       - 8888:80
     volumes:
       # Mount the module in the proper contrib module directory.
-      - .:/var/www/html/modules/contrib/my_module
+      - .:/opt/drupal/web/modules/contrib/my_module
       # Mount the Drupal PHPUnit configuration file.
-      - ./phpunit.xml:/var/www/html/phpunit.xml
+      - ./phpunit.xml:/opt/drupal/web/phpunit.xml
     restart: always
 
   db:
