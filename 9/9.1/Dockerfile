@@ -23,10 +23,6 @@ RUN curl -OL https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait
     chmod +x wait-for-it.sh && \
     mv wait-for-it.sh /usr/local/bin/wait-for-it
 
-# Add Composer vendors directory to the path.
-# So we would be able to run binary without specifying ./vendor/bin/.
-ENV PATH /opt/drupal/vendor/bin:$PATH
-
 # Install Drush.
 # Drush will be heavily use to setup a working Drupal environment.
 RUN COMPOSER_MEMORY_LIMIT=-1 composer require drush/drush:^10.1.1
