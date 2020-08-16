@@ -28,6 +28,13 @@ build:
 		--build-arg DRUPAL_VER=$(DRUPAL_VER) \
 		./
 
+build-nc:
+	docker build -t $(REPO):$(TAG) \
+		--build-arg BASE_IMAGE_TAG=$(BASE_IMAGE_TAG) \
+		--build-arg DRUPAL_VER=$(DRUPAL_VER) \
+		--no-cache \
+		./
+
 test:
 	cd ./tests && IMAGE=$(REPO):$(TAG) ./run.sh
 
