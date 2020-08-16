@@ -24,7 +24,7 @@ RUN curl -OL https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait
     mv wait-for-it.sh /usr/local/bin/wait-for-it
 
 # Install Drupal Dev dependencies such as PHPUnit, Behat-Mink, ...
-RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev drupal/core-dev:^${DRUPAL_VER}
+RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev drupal/core-dev:~${DRUPAL_VER}
 
 # Install Drush.
 # Drush will be heavily use to setup a working Drupal environment.
