@@ -36,7 +36,7 @@ RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev drupal/core-dev:^${DRUPAL_VE
 
 # Install Drush.
 # Drush will be heavily use to setup a working Drupal environment.
-RUN COMPOSER_MEMORY_LIMIT=-1 composer require drush/drush:^10.1.1
+RUN COMPOSER_MEMORY_LIMIT=-1 composer require drush/drush:^10.1.1 symfony/process:^4.4.9
 
 # Install Drush Launcher
 # So we would be able the run drush from any places without being in the Drupal web directory.
