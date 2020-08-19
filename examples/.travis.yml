@@ -19,7 +19,7 @@ matrix:
     - name: Drupal 9.1.x-dev
       env: BASE_IMAGE_TAG="9.1"
   allow_failures:
-      env: BASE_IMAGE_TAG="9.1"
+    - env: BASE_IMAGE_TAG="9.1"
 
 before_install:
   - docker-compose build --pull --build-arg BASE_IMAGE_TAG=${BASE_IMAGE_TAG} drupal
