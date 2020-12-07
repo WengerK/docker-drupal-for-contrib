@@ -11,7 +11,7 @@ matrix:
       env: DOCKER_TAG="8.9"
     - name: Drupal 9.0.x
       env: DOCKER_TAG="9.0"
-    - name: Drupal 9.1-dev
+    - name: Drupal 9.1.x
       env: DOCKER_TAG="9.1"
 
 before_install:
