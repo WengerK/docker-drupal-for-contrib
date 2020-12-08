@@ -23,6 +23,9 @@ RUN curl -OL https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait
     chmod +x wait-for-it.sh && \
     mv wait-for-it.sh /usr/local/bin/wait-for-it
 
+# Install Drupal Dev dependencies such as PHPUnit, Behat-Mink, ...
+RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev drupal/core-dev:~${DRUPAL_VER}
+
 # Install Drush.
 # Drush will be heavily use to setup a working Drupal environment.
 RUN COMPOSER_MEMORY_LIMIT=-1 composer require drush/drush:^10.1.1
@@ -32,14 +35,6 @@ RUN COMPOSER_MEMORY_LIMIT=-1 composer require drush/drush:^10.1.1
 RUN curl -OL https://github.com/drush-ops/drush-launcher/releases/latest/download/drush.phar && \
     chmod +x drush.phar && \
     mv drush.phar /usr/local/bin/drush
-
-# Update to latest Drupal 9 upgrade.
-# @see https://www.drupal.org/docs/upgrading-drupal/upgrading-from-drupal-8-to-drupal-9-or-higher
-RUN composer require drupal/core-recommended:^${DRUPAL_VER} drupal/core-composer-scaffold:^${DRUPAL_VER} drupal/core-project-message:^${DRUPAL_VER} --update-with-dependencies --no-update
-RUN composer require drupal/core-dev:^${DRUPAL_VER} --dev --update-with-dependencies --no-update
-
-# Perform Drupal 9 installation
-RUN COMPOSER_MEMORY_LIMIT=-1 composer update
 
 # Clean repository.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*

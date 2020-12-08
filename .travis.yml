@@ -11,8 +11,11 @@ matrix:
       env: DOCKER_TAG="8.9"
     - name: Drupal 9.0.x
       env: DOCKER_TAG="9.0"
-    - name: Drupal 9.1-dev
+    - name: Drupal 9.1.x
       env: DOCKER_TAG="9.1"
+
+before_install:
+  - curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64 && chmod +x container-structure-test-linux-amd64 && sudo mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test
 
 script:
   - set -e

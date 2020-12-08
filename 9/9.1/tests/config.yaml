@@ -1,0 +1,60 @@
+schemaVersion: '2.0.0'
+metadataTest:
+  env:
+    - key: 'DRUPAL_VER'
+      value: '9.1'
+  workdir: '/opt/drupal'
+  exposedPorts: ['80']
+commandTests:
+  - name: 'Drupal Root location'
+    command: './vendor/bin/drush'
+    args: ['status']
+    expectedOutput: ['Drupal root\s+:\s+/opt/drupal/web']
+  - name: 'Drupal version'
+    command: './vendor/bin/drush'
+    args: ['status']
+    expectedOutput: ['Drupal version\s+:\s+9\.1.\d']
+  - name: 'Drush location'
+    command: 'which'
+    args: ['drush']
+    expectedOutput: ['/usr/local/bin/drush']
+  - name: 'Drush version'
+    command: './vendor/bin/drush'
+    args: ['status']
+    expectedOutput: ['Drush version\s+:\s+10\.\d\.\d']
+  - name: 'PHPUnit location'
+    command: 'which'
+    args: ['phpunit']
+    expectedOutput: ['/opt/drupal/vendor/bin/phpunit']
+  - name: 'PHPUnit version'
+    command: 'phpunit'
+    args: ['--version']
+    expectedOutput: ['^PHPUnit 9\.\d\.\d']
+fileExistenceTests:
+  - name: 'Root'
+    path: '/'
+    shouldExist: true
+    permissions: 'drwxr-xr-x'
+    uid: 0
+    gid: 0
+  - name: 'PHPUnit default file'
+    path: '/opt/drupal/web/phpunit.xml'
+    shouldExist: true
+  - name: 'Wait-for-it script'
+    path: '/usr/local/bin/wait-for-it'
+    shouldExist: true
+    permissions: '-rwxr-xr-x'
+    uid: 0
+    gid: 0
+  - name: 'Drupal Root'
+    path: '/opt/drupal/web'
+    shouldExist: true
+    permissions: 'drwxr-xr-x'
+    uid: 0
+    gid: 0
+  - name: 'Drupal Public'
+    path: '/opt/drupal/web/sites/default'
+    shouldExist: true
+    permissions: 'drwxr-xr-x'
+    uid: 33
+    gid: 33
