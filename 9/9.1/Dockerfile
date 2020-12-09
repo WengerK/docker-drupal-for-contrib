@@ -26,6 +26,11 @@ RUN curl -OL https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait
 # Install Drupal Dev dependencies such as PHPUnit, Behat-Mink, ...
 RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev drupal/core-dev:~${DRUPAL_VER}
 
+# Install phpspec/prophecy-phpunit
+# This is because PHPUnit 8 includes Prophecy integration, but PHPUnit 9 (Drupal 9.1.x has updated to PHPUnit 9) not.
+# @see https://www.drupal.org/node/3176567
+RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev phpspec/prophecy-phpunit:^2
+
 # Install Drush.
 # Drush will be heavily use to setup a working Drupal environment.
 RUN COMPOSER_MEMORY_LIMIT=-1 composer require drush/drush:^10.1.1
