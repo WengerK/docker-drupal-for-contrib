@@ -27,7 +27,7 @@ RUN curl -OL https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait
 RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev drupal/core-dev:~${DRUPAL_VER}
 
 # Install phpspec/prophecy-phpunit
-# This is because PHPUnit 8 includes Prophecy integration, but PHPUnit 9 (Drupal 9.1.x has updated to PHPUnit 9) not.
+# This is because PHPUnit 8 includes Prophecy integration, but PHPUnit 9 not (Drupal 9.1.x has updated to PHPUnit 9).
 # @see https://www.drupal.org/node/3176567
 RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev phpspec/prophecy-phpunit:^2
 
