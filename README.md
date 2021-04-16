@@ -124,7 +124,7 @@ script:
 
 ## Github Actions Integration example
 
-```
+```yaml
 name: Continuous integration
 on: [push]
 
