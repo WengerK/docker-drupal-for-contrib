@@ -121,3 +121,35 @@ before_script:
 script:
   - docker-compose exec -u www-data drupal phpunit --no-coverage --group=${MODULE_NAME} --configuration=/opt/drupal/web/phpunit.xml
 ```
+
+## Github Actions Integration example
+
+```
+name: Continuous integration
+on: [push]
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        drupal_version: ['8.8', '8.9', '9.0']
+        module: ['my_module']
+        experimental: [ false ]
+        include:
+          - drupal_version: '9.1'
+            module: 'my_module'
+            experimental: true
+
+    steps:
+      - uses: actions/checkout@v1
+      - run: docker-compose -f docker-compose.yml pull --include-deps drupal
+      - name: Build the docker-compose stack
+        run: docker-compose -f docker-compose.yml build --pull --build-arg BASE_IMAGE_TAG=${{ matrix.drupal_version }} drupal
+        continue-on-error: ${{ matrix.experimental }}
+      - name: Run unit tests
+        run: docker-compose -f docker-compose.yml run -u www-data drupal phpunit --no-coverage --group=${{ matrix.module }} --configuration=/var/www/html/phpunit.xml
+        continue-on-error: ${{ matrix.experimental }}
+```
