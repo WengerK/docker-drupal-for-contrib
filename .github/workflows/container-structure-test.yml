@@ -1,5 +1,5 @@
 name: "Test Dockerfile structure"
-on: pull_request
+on: push
 
 jobs:
   tests:
