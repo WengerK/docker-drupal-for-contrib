@@ -37,7 +37,6 @@ jobs:
     if:
       contains('
       refs/heads/master
-      refs/heads/feature/github-actions
       ', github.ref)
     strategy:
       matrix:
