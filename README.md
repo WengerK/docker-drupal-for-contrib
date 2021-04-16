@@ -1,6 +1,6 @@
 # Drupal Docker Container for Contributions
 
-[![Build Status](https://travis-ci.com/wengerk/docker-drupal-for-contrib.svg?branch=master)](https://travis-ci.com/github/WengerK/docker-drupal-for-contrib)
+[![Build Status](https://github.com/WengerK/docker-drupal-for-contrib/actions/workflows/container-structure-test.yml/badge.svg)](https://github.com/WengerK/docker-drupal-for-contrib/actions/workflows/container-structure-test.yml)
 [![Docker Pulls](https://img.shields.io/docker/pulls/wengerk/drupal-for-contrib.svg)](https://hub.docker.com/r/wengerk/drupal-for-contrib)
 [![Docker Stars](https://img.shields.io/docker/stars/wengerk/drupal-for-contrib.svg)](https://hub.docker.com/r/wengerk/drupal-for-contrib)
 

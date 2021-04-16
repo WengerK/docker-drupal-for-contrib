@@ -1,0 +1,71 @@
+name: "Test Dockerfile structure"
+on:
+  push:
+  schedule:
+    - cron: '0 0 * * 1'
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        drupal_version: ['8.8', '8.9', '9.0', '9.1', '9.2']
+        include:
+          - drupal_version: '8.8'
+            drupal_major: '8'
+          - drupal_version: '8.9'
+            drupal_major: '8'
+          - drupal_version: '9.0'
+            drupal_major: '9'
+          - drupal_version: '9.1'
+            drupal_major: '9'
+          - drupal_version: '9.2'
+            drupal_major: '9'
+    steps:
+      - name: checkout source
+        uses: actions/checkout@master
+      - name: Install Google Container Structure Test Framework
+        run: curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64 && chmod +x container-structure-test-linux-amd64 && sudo mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test
+      - name: Build docker images
+        run: make
+        working-directory: ${{ matrix.drupal_major }}/${{ matrix.drupal_version }}
+      - name: Run tests
+        run: make test
+        working-directory: ${{ matrix.drupal_major }}/${{ matrix.drupal_version }}
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: [ tests ]
+    if:
+      contains('
+      refs/heads/master
+      ', github.ref)
+    strategy:
+      matrix:
+        drupal_version: ['8.8', '8.9', '9.0', '9.1', '9.2']
+        include:
+          - drupal_version: '8.8'
+            drupal_major: '8'
+          - drupal_version: '8.9'
+            drupal_major: '8'
+          - drupal_version: '9.0'
+            drupal_major: '9'
+          - drupal_version: '9.1'
+            drupal_major: '9'
+          - drupal_version: '9.2'
+            drupal_major: '9'
+    steps:
+      - name: checkout source
+        uses: actions/checkout@master
+      - name: Build docker images
+        run: make
+        working-directory: ${{ matrix.drupal_major }}/${{ matrix.drupal_version }}
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Push to DockerHub
+        run: make release
+        working-directory: ${{ matrix.drupal_major }}/${{ matrix.drupal_version }}
