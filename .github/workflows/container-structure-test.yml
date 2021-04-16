@@ -1,6 +1,8 @@
 name: "Test Dockerfile structure"
-on: push
-
+on:
+  push:
+  schedule:
+    - cron: '0 0 * * 1'
 jobs:
   tests:
     runs-on: ubuntu-latest
