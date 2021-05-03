@@ -1,6 +1,6 @@
 # Drupal Docker Container for Contributions
 
-[![Build Status](https://travis-ci.com/wengerk/docker-drupal-for-contrib.svg?branch=master)](https://travis-ci.com/github/WengerK/docker-drupal-for-contrib)
+[![Build Status](https://github.com/WengerK/docker-drupal-for-contrib/actions/workflows/container-structure-test.yml/badge.svg)](https://github.com/WengerK/docker-drupal-for-contrib/actions/workflows/container-structure-test.yml)
 [![Docker Pulls](https://img.shields.io/docker/pulls/wengerk/drupal-for-contrib.svg)](https://hub.docker.com/r/wengerk/drupal-for-contrib)
 [![Docker Stars](https://img.shields.io/docker/stars/wengerk/drupal-for-contrib.svg)](https://hub.docker.com/r/wengerk/drupal-for-contrib)
 
@@ -24,6 +24,8 @@ Overview:
 
 | Supported tags and respective `Dockerfile` links                                                          | Drupal   |
 | --------------------------------------------------------------------------------------------------------- | -------- |
+| `9.3` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.3/Dockerfile) | 9.3-dev  |
+| `9.2` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.2/Dockerfile) | 9.2.0+   |
 | `9.1` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.1/Dockerfile) | 9.1.0+   |
 | `9.0` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.0/Dockerfile) | 9.0.10+  |
 | `8.9` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/8/8.9/Dockerfile) | 8.9.11+  |
@@ -119,4 +121,36 @@ before_script:
 
 script:
   - docker-compose exec -u www-data drupal phpunit --no-coverage --group=${MODULE_NAME} --configuration=/opt/drupal/web/phpunit.xml
+```
+
+## Github Actions Integration example
+
+```yaml
+name: Continuous integration
+on: [push]
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        drupal_version: ['8.8', '8.9', '9.0']
+        module: ['my_module']
+        experimental: [ false ]
+        include:
+          - drupal_version: '9.1'
+            module: 'my_module'
+            experimental: true
+
+    steps:
+      - uses: actions/checkout@v1
+      - run: docker-compose -f docker-compose.yml pull --include-deps drupal
+      - name: Build the docker-compose stack
+        run: docker-compose -f docker-compose.yml build --pull --build-arg BASE_IMAGE_TAG=${{ matrix.drupal_version }} drupal
+        continue-on-error: ${{ matrix.experimental }}
+      - name: Run unit tests
+        run: docker-compose -f docker-compose.yml run -u www-data drupal phpunit --no-coverage --group=${{ matrix.module }} --configuration=/var/www/html/phpunit.xml
+        continue-on-error: ${{ matrix.experimental }}
 ```
