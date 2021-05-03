@@ -39,8 +39,8 @@ RUN composer config minimum-stability dev
 # Prepare for Drupal 9 upgrade
 # @see https://www.drupal.org/docs/upgrading-drupal/upgrading-from-drupal-8-to-drupal-9-or-higher
 #RUN composer require drupal/core-recommended:^${DRUPAL_VER} drupal/core-composer-scaffold drupal/core-project-message --update-with-all-dependencies --no-update
-RUN composer require drupal/core-recommended:~${DRUPAL_VER}.0 --update-with-all-dependencies --no-update
-RUN composer require drupal/core-dev:~${DRUPAL_VER}.0 --dev --update-with-all-dependencies --no-update
+RUN composer require drupal/core-recommended:~${DRUPAL_VER} --update-with-all-dependencies --no-update
+RUN composer require drupal/core-dev:~${DRUPAL_VER} --dev --update-with-all-dependencies --no-update
 
 # Install phpspec/prophecy-phpunit
 # This is because PHPUnit 8 includes Prophecy integration, but PHPUnit 9 not (Drupal 9.1.x has updated to PHPUnit 9).
