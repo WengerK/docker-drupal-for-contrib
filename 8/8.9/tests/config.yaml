@@ -2,7 +2,7 @@ schemaVersion: '2.0.0'
 metadataTest:
   env:
     - key: 'DRUPAL_VER'
-      value: '8.9.3'
+      value: '8.9'
   workdir: '/opt/drupal'
   exposedPorts: ['80']
 commandTests:
