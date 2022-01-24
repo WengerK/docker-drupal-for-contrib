@@ -2,24 +2,24 @@ schemaVersion: '2.0.0'
 metadataTest:
   env:
     - key: 'DRUPAL_VER'
-      value: '8.8.8'
+      value: '9.4'
   workdir: '/opt/drupal'
   exposedPorts: ['80']
 commandTests:
   - name: 'Drupal Root location'
-    command: 'drush'
+    command: './vendor/bin/drush'
     args: ['status']
     expectedOutput: ['Drupal root\s+:\s+/opt/drupal/web']
   - name: 'Drupal version'
-    command: 'drush'
+    command: './vendor/bin/drush'
     args: ['status']
-    expectedOutput: ['Drupal version\s+:\s+8\.8.\d']
+    expectedOutput: ['Drupal version\s+:\s+9\.4\.\d-[beta\d|dev|rc\d]']
   - name: 'Drush location'
-    command: 'drush'
-    args: ['status']
-    expectedOutput: ['Drush script\s+:\s+/usr/local/bin/drush']
+    command: 'which'
+    args: ['drush']
+    expectedOutput: ['/usr/local/bin/drush']
   - name: 'Drush version'
-    command: 'drush'
+    command: './vendor/bin/drush'
     args: ['status']
     expectedOutput: ['Drush version\s+:\s+10\.\d\.\d']
   - name: 'PHPUnit location'
@@ -29,7 +29,7 @@ commandTests:
   - name: 'PHPUnit version'
     command: 'phpunit'
     args: ['--version']
-    expectedOutput: ['PHPUnit 7.5.20 by Sebastian Bergmann and contributors.']
+    expectedOutput: ['^PHPUnit 9\.\d\.\d']
 fileExistenceTests:
   - name: 'Root'
     path: '/'
