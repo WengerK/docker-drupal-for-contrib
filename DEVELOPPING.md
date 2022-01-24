@@ -48,7 +48,7 @@ After updating any image, don't forget to update all the images variants by runn
 
 You can also locally build all images or a specific one:
 
-    ./update.sh --build=<8.8|9.0|all|latest>
+    ./update.sh --build=<8.9|9.0|all|latest>
     
 And if you have the credentials (run docker login), you can manually publish an image:
 
@@ -70,5 +70,5 @@ cd ./9/9.0 && make build && make test
 
 You can also use the root `./update.sh [-t|--test=]` command to run the tests (useful for bulk tests):
 
-    ./update.sh --test=<8.8|9.0|all|latest>
+    ./update.sh --test=<8.9|9.0|all|latest>
     ./update.sh -t

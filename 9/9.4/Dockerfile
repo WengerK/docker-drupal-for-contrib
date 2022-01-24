@@ -23,12 +23,26 @@ RUN curl -OL https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait
     chmod +x wait-for-it.sh && \
     mv wait-for-it.sh /usr/local/bin/wait-for-it
 
-# Install Drupal Dev dependencies such as PHPUnit, Behat-Mink, ...
-RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev drupal/core-dev:~${DRUPAL_VER}
+# Install phpspec/prophecy-phpunit
+# This is because PHPUnit 8 includes Prophecy integration, but PHPUnit 9 not (Drupal 9.1.x has updated to PHPUnit 9).
+# @see https://www.drupal.org/node/3176567
+RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev phpspec/prophecy-phpunit:^2 --no-update
 
 # Install Drush.
 # Drush will be heavily use to setup a working Drupal environment.
 RUN COMPOSER_MEMORY_LIMIT=-1 composer require drush/drush:^10.1.1
+
+# Prepare for Drupal 9 upgrade
+# @see https://www.drupal.org/docs/upgrading-drupal/upgrading-from-drupal-8-to-drupal-9-or-higher
+#RUN composer require drupal/core-recommended:^${DRUPAL_VER} drupal/core-composer-scaffold drupal/core-project-message --update-with-all-dependencies --no-update
+RUN composer require drupal/core-recommended:~${DRUPAL_VER} --update-with-all-dependencies --no-update
+RUN composer require drupal/core-dev:~${DRUPAL_VER} --dev --update-with-all-dependencies --no-update
+
+# Set the minimum stability to "dev" to allow installing unstable Drupal Core.
+RUN composer config minimum-stability dev
+
+# Perform Drupal 9 installation
+RUN COMPOSER_MEMORY_LIMIT=-1 composer update --with-all-dependencies
 
 # Install Drush Launcher
 # So we would be able the run drush from any places without being in the Drupal web directory.
