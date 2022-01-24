@@ -29,7 +29,6 @@ Overview:
 | `9.1` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.1/Dockerfile) | 9.1.0+   |
 | `9.0` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.0/Dockerfile) | 9.0.10+  |
 | `8.9` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/8/8.9/Dockerfile) | 8.9.11+  |
-| `8.8` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/8/8.8/Dockerfile) | 8.8.12+  |
 
 ## Usage in a Drupal Contribution Modules/Themes
 
@@ -102,8 +101,6 @@ env:
 
 jobs:
   include:
-    - name: D8.8
-      env: BASE_IMAGE_TAG="8.8"
     - name: D8.9
       env: BASE_IMAGE_TAG="8.9"
     - name: D9.0
@@ -136,7 +133,7 @@ jobs:
 
     strategy:
       matrix:
-        drupal_version: ['8.8', '8.9', '9.0']
+        drupal_version: ['8.9', '9.0']
         module: ['my_module']
         experimental: [ false ]
         include:
