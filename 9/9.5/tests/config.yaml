@@ -2,7 +2,7 @@ schemaVersion: '2.0.0'
 metadataTest:
   env:
     - key: 'DRUPAL_VER'
-      value: '9.4'
+      value: '9.5'
   workdir: '/opt/drupal'
   exposedPorts: ['80']
 commandTests:
@@ -13,7 +13,7 @@ commandTests:
   - name: 'Drupal version'
     command: './vendor/bin/drush'
     args: ['status']
-    expectedOutput: ['Drupal version\s+:\s+9\.4.\d']
+    expectedOutput: ['Drupal version\s+:\s+9\.5\.\d-[beta\d|dev|rc\d]']
   - name: 'Drush location'
     command: 'which'
     args: ['drush']

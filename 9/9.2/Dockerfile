@@ -23,6 +23,10 @@ RUN curl -OL https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait
     chmod +x wait-for-it.sh && \
     mv wait-for-it.sh /usr/local/bin/wait-for-it
 
+# Composer plugin must be authorization to avoid instance of Drupal installed into the vendor directory.
+# @see https://www.drupal.org/project/drupal/issues/3276393
+RUN composer config --no-interaction allow-plugins.composer/installers true
+
 # Install Drupal Dev dependencies such as PHPUnit, Behat-Mink, ...
 RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev drupal/core-dev:~${DRUPAL_VER}
 
