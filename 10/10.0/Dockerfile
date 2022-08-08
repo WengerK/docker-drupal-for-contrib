@@ -23,6 +23,10 @@ RUN curl -OL https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait
     chmod +x wait-for-it.sh && \
     mv wait-for-it.sh /usr/local/bin/wait-for-it
 
+# Composer plugin PHPStan must be authorized since Drupal 10.
+# @see https://www.drupal.org/project/drupal/issues/3276393
+RUN composer config --no-interaction allow-plugins.phpstan/extension-installer true
+
 # Install phpspec/prophecy-phpunit
 # This is because PHPUnit 8 includes Prophecy integration, but PHPUnit 9 not (Drupal 9.1.x has updated to PHPUnit 9).
 # @see https://www.drupal.org/node/3176567
