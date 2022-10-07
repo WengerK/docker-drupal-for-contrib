@@ -32,16 +32,12 @@ services:
       core:
         soft: -1
         hard: -1
-    cap_add:
-      - SYS_ADMIN
     ports:
       - "4444:4444"
       - "9515:9515"
-    volumes:
-      - /dev/shm:/dev/shm
     entrypoint:
       - chromedriver
-      - "--no-sandbox"
       - "--log-path=/tmp/chromedriver.log"
       - "--verbose"
       - "--whitelisted-ips="
+      - "--allowed-origins=*"
