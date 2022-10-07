@@ -75,7 +75,7 @@ Overview:
 3. Run Docker
 
 ```shell
-$ docker-compose build --pull --build-arg BASE_IMAGE_TAG=8.9 drupal
+$ docker-compose build --pull --build-arg BASE_IMAGE_TAG=9.0 drupal
 $ docker-compose up -d drupal
 # wait on Docker to be ready, especially MariaDB that takes many seconds to be up before install.
 $ docker-compose exec -u www-data drupal drush site-install standard --db-url="mysql://drupal:drupal@db/drupal" --site-name=Example -y
@@ -148,7 +148,7 @@ jobs:
             experimental: true
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - run: docker-compose -f docker-compose.yml pull --include-deps drupal
       - name: Build the docker-compose stack
         run: docker-compose -f docker-compose.yml build --pull --build-arg BASE_IMAGE_TAG=${{ matrix.drupal_version }} drupal

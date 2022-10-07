@@ -10,8 +10,6 @@ env:
 
 matrix:
   include:
-    - name: Drupal 8.9.x
-      env: BASE_IMAGE_TAG="8.9"
     - name: Drupal 9.0.x
       env: BASE_IMAGE_TAG="9.0"
     - name: Drupal 9.1.x-dev
