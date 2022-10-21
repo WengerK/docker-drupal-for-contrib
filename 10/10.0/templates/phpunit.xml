@@ -31,6 +31,26 @@
      external DDev URL so you can follow the links directly.
     -->
     <env name="BROWSERTEST_OUTPUT_BASE_URL" value=""/>
+
+    <!-- Deprecation testing is managed through Symfony's PHPUnit Bridge.
+      The environment variable SYMFONY_DEPRECATIONS_HELPER is used to configure
+      the behaviour of the deprecation tests.
+      See https://symfony.com/doc/current/components/phpunit_bridge.html#configuration
+      Drupal core's testing framework is setting this variable to its defaults.
+      Projects with their own requirements need to manage this variable
+      explicitly.
+    -->
+    <!-- To disable deprecation testing completely uncomment the next line. -->
+    <!-- <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled"/> -->
+    <!-- Deprecation errors can be selectively ignored by specifying a file of
+      regular expression patterns for exclusion.
+      See https://symfony.com/doc/current/components/phpunit_bridge.html#ignoring-deprecations
+      Uncomment the line below to specify a custom deprecations ignore file.
+      NOTE: it may be required to specify the full path to the file to run tests
+      correctly.
+    -->
+    <!-- <env name="SYMFONY_DEPRECATIONS_HELPER" value="ignoreFile=.deprecation-ignore.txt"/> -->
+
     <!-- To disable deprecation testing completely uncomment the next line. -->
     <!-- <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled"/> -->
     <!-- Example for changing the driver class for mink tests MINK_DRIVER_CLASS value: 'Drupal\FunctionalJavascriptTests\DrupalSelenium2Driver' -->
@@ -42,7 +62,7 @@
   </php>
   <testsuites>
     <testsuite name="unit">
-      <file><./core/tests/TestSuites/>UnitTestSuite.php</file>
+      <file>./core/tests/TestSuites/UnitTestSuite.php</file>
     </testsuite>
     <testsuite name="kernel">
       <file>./core/tests/TestSuites/KernelTestSuite.php</file>
@@ -64,24 +84,32 @@
     <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener">
     </listener>
   </listeners>
-  <!-- Settings for coverage reports. -->
-  <coverage>
-    <include>
+  <!-- Filter for coverage reports. -->
+  <filter>
+    <whitelist>
       <directory>./core/includes</directory>
       <directory>./core/lib</directory>
       <directory>./core/modules</directory>
+      <!-- Extensions can have their own test directories, so exclude those. -->
+      <exclude>
+        <directory>./core/modules/*/src/Tests</directory>
+        <directory>./core/modules/*/tests</directory>
+      </exclude>
       <directory>./modules</directory>
+      <exclude>
+        <directory>./modules/*/src/Tests</directory>
+        <directory>./modules/*/tests</directory>
+        <directory>./modules/*/*/src/Tests</directory>
+        <directory>./modules/*/*/tests</directory>
+      </exclude>
       <directory>./sites</directory>
-    </include>
-    <exclude>
-      <directory>./core//modules/*/src/Tests</directory>
-      <directory>./core//modules/*/tests</directory>
-      <directory>./modules/*/src/Tests</directory>
-      <directory>./modules/*/tests</directory>
-      <directory>./modules/*/*/src/Tests</directory>
-      <directory>./modules/*/*/tests</directory>
-    </exclude>
-  </coverage>
+      <!-- By definition test classes have no tests. -->
+      <exclude>
+        <directory suffix="Test.php">./</directory>
+        <directory suffix="TestBase.php">./</directory>
+      </exclude>
+    </whitelist>
+  </filter>
   <!-- Logging for coverage reports. -->
   <logging>
     <log type="coverage-clover" target="./build/logs/clover.xml"/>
