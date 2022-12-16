@@ -1,6 +1,6 @@
 schemaVersion: '2.0.0'
 metadataTest:
-  env:
+  envVars:
     - key: 'DRUPAL_VER'
       value: '9.0'
   workdir: '/opt/drupal'
