@@ -1,5 +1,5 @@
 ARG BASE_IMAGE_TAG
-FROM drupal:${BASE_IMAGE_TAG}-rc-apache
+FROM drupal:${BASE_IMAGE_TAG}-apache
 
 ARG DRUPAL_VER
 

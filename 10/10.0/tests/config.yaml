@@ -13,7 +13,7 @@ commandTests:
   - name: 'Drupal version'
     command: 'drush'
     args: ['status']
-    expectedOutput: ['Drupal version\s+:\s+10\.0\.\d-[alpha\d|beta\d|dev|rc\d]']
+    expectedOutput: [ 'Drupal version\s+:\s+10\.0.\d' ]
   - name: 'Drush location'
     command: 'drush'
     args: ['status']
