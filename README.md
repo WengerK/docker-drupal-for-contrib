@@ -24,7 +24,7 @@ Overview:
 
 | Supported tags and respective `Dockerfile` links                                                             | Drupal     |
 |--------------------------------------------------------------------------------------------------------------|------------|
-| `10.1` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.1/Dockerfile) | 10.1.0-dev |
+| `10.1` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.1/Dockerfile) | 10.1.0+ |
 | `10.0` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.0/Dockerfile) | 10.0.0+    |
 | `9.5` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.5/Dockerfile)    | 9.5.0+     |
 | `9.4` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.4/Dockerfile)    | 9.4.0+     |
