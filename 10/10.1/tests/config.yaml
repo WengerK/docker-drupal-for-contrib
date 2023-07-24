@@ -18,7 +18,7 @@ commandTests:
     command: 'drush'
     args: ['status']
     expectedOutput: ['Drush script\s+:\s+/usr/local/bin/drush']
-  - name: 'Drush versions'
+  - name: 'Drush version'
     command: 'drush'
     args: ['status']
     expectedOutput: ['Drush version\s+:\s+11\.\d\.\d']
