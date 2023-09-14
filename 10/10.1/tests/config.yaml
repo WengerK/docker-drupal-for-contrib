@@ -21,7 +21,7 @@ commandTests:
   - name: 'Drush location'
     command: 'drush'
     args: ['status']
-    expectedOutput: ['Drush script\s+:\s+/usr/local/bin/drush']
+    expectedOutput: ['Drush script\s+:\s+/opt/drupal/vendor/bin/drush']
   - name: 'Drush version'
     command: 'drush'
     args: ['status']

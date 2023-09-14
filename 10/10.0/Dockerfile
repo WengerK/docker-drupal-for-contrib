@@ -36,12 +36,6 @@ RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev drupal/core-dev:~${DRUPAL_VE
 # Drush will be heavily use to setup a working Drupal environment.
 RUN COMPOSER_MEMORY_LIMIT=-1 composer require drush/drush:^11.0.4
 
-# Install Drush Launcher
-# So we would be able the run drush from any places without being in the Drupal web directory.
-RUN curl -OL https://github.com/drush-ops/drush-launcher/releases/latest/download/drush.phar && \
-    chmod +x drush.phar && \
-    mv drush.phar /usr/local/bin/drush
-
 # Clean repository.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 

@@ -44,12 +44,6 @@ RUN composer config minimum-stability dev
 # Perform Drupal 10.1 installation.
 RUN COMPOSER_MEMORY_LIMIT=-1 composer update --with-all-dependencies
 
-# Install Drush Launcher
-# So we would be able the run drush from any places without being in the Drupal web directory.
-RUN curl -OL https://github.com/drush-ops/drush-launcher/releases/latest/download/drush.phar && \
-    chmod +x drush.phar && \
-    mv drush.phar /usr/local/bin/drush
-
 # Clean repository.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
