@@ -3,6 +3,7 @@ FROM drupal:${BASE_IMAGE_TAG}-apache
 
 ARG DRUPAL_VER
 
+ENV COMPOSER_ALLOW_SUPERUSER=1
 ENV DRUPAL_VER="${DRUPAL_VER}"
 
 WORKDIR /opt/drupal
@@ -23,12 +24,13 @@ RUN curl -OL https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait
     chmod +x wait-for-it.sh && \
     mv wait-for-it.sh /usr/local/bin/wait-for-it
 
-# Composer plugin must be authorization to avoid instance of Drupal installed into the vendor directory.
-# @see https://www.drupal.org/project/drupal/issues/3276393
-RUN composer config --no-interaction allow-plugins.composer/installers true
+# As of Composer 2.2.0, the allow-plugins option adds a layer of security.
+# Some plugin Installer must be authorized. Not allowing it may lead to an instance of Drupal
+# installed into the vendor directory.
+RUN composer config --no-interaction allow-plugins true
 
 # Install Drupal Dev dependencies such as PHPUnit, Behat-Mink, ...
-RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev drupal/core-dev:~${DRUPAL_VER}
+RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev drupal/core-dev:~${DRUPAL_VERSION}
 
 # Install phpspec/prophecy-phpunit
 # This is because PHPUnit 8 includes Prophecy integration, but PHPUnit 9 not (Drupal 9.1.x has updated to PHPUnit 9).

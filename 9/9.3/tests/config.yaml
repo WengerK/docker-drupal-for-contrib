@@ -14,6 +14,10 @@ commandTests:
     command: './vendor/bin/drush'
     args: ['status']
     expectedOutput: ['Drupal version\s+:\s+9\.3.\d']
+  - name: 'Drupal Core Dev version'
+    command: bash
+    args: ['-c', 'composer show drupal/core-dev']
+    expectedOutput: ['versions\s+:\s+\*\s+9\.3\.\d*']
   - name: 'Drush location'
     command: 'which'
     args: ['drush']
