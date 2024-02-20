@@ -50,6 +50,7 @@ jobs:
       ', github.ref)
     strategy:
       matrix:
+        platforms: 'linux/amd64,linux/arm64'
         drupal_version: ['8.9', '9.0', '9.1', '9.2', '9.3', '9.4', '9.5', '10.0', '10.1']
         include:
           - drupal_version: '8.9'
@@ -74,7 +75,7 @@ jobs:
       - name: checkout source
         uses: actions/checkout@master
       - name: Build docker images
-        run: make
+        run: ARCH_TO_BUILD=${{ matrix.platforms }} make
         working-directory: ${{ matrix.drupal_major }}/${{ matrix.drupal_version }}
       -
         name: Login to DockerHub

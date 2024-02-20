@@ -2,6 +2,7 @@ DRUPAL_VER ?= 10.1
 DRUPAL_VER_MAJOR ?= $(shell echo "${DRUPAL_VER}" | grep -oE '^[0-9]+\.[0-9]+')
 
 BASE_IMAGE_TAG = 10.0
+ARCH_TO_BUILD ?= "linux/amd64"
 
 REPO = wengerk/drupal-for-contrib
 NAME = drupal-$(DRUPAL_VER_MAJOR)
@@ -23,13 +24,15 @@ endif
 default: build
 
 build:
-	docker build -t $(REPO):$(TAG) \
+	docker buildx build -t $(REPO):$(TAG) \
+		--platform=${ARCH_TO_BUILD} \
 		--build-arg BASE_IMAGE_TAG=$(BASE_IMAGE_TAG) \
 		--build-arg DRUPAL_VER=$(DRUPAL_VER) \
 		./
 
 build-nc:
-	docker build -t $(REPO):$(TAG) \
+	docker buildx build -t $(REPO):$(TAG) \
+		--platform=${ARCH_TO_BUILD} \
 		--build-arg BASE_IMAGE_TAG=$(BASE_IMAGE_TAG) \
 		--build-arg DRUPAL_VER=$(DRUPAL_VER) \
 		--no-cache --pull \
