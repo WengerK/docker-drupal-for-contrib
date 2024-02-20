@@ -22,18 +22,19 @@ Overview:
 * [Travis CI builds](https://travis-ci.com/github/WengerK/docker-drupal-for-contrib) 
 * [Docker Hub](https://hub.docker.com/r/wengerk/drupal-for-contrib)
 
-| Supported tags and respective `Dockerfile` links                                                             | Drupal  |
-|--------------------------------------------------------------------------------------------------------------|---------|
-| `10.2` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.2/Dockerfile) | 10.2.0+ |
-| `10.1` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.1/Dockerfile) | 10.1.0+ |
-| `10.0` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.0/Dockerfile) | 10.0.0+ |
-| `9.5` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.5/Dockerfile)    | 9.5.0+  |
-| `9.4` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.4/Dockerfile)    | 9.4.0+  |
-| `9.3` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.3/Dockerfile)    | 9.3.0+  |
-| `9.2` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.2/Dockerfile)    | 9.2.0+  |
-| `9.1` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.1/Dockerfile)    | 9.1.0+  |
-| `9.0` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.0/Dockerfile)    | 9.0.10+ |
-| `8.9` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/8/8.9/Dockerfile)    | 8.9.11+ |
+| Supported tags and respective `Dockerfile` links                                                                 | Drupal   |
+|------------------------------------------------------------------------------------------------------------------|----------|
+| `11.x-dev` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/11/11.0/Dockerfile) | 11.0-dev |
+| `10.2` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.2/Dockerfile)     | 10.2.0+  |
+| `10.1` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.1/Dockerfile)     | 10.1.0+  |
+| `10.0` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.0/Dockerfile)     | 10.0.0+  |
+| `9.5` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.5/Dockerfile)        | 9.5.0+   |
+| `9.4` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.4/Dockerfile)        | 9.4.0+   |
+| `9.3` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.3/Dockerfile)        | 9.3.0+   |
+| `9.2` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.2/Dockerfile)        | 9.2.0+   |
+| `9.1` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.1/Dockerfile)        | 9.1.0+   |
+| `9.0` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.0/Dockerfile)        | 9.0.10+  |
+| `8.9` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/8/8.9/Dockerfile)        | 8.9.11+  |
 
 ## Usage in a Drupal Contribution Modules/Themes
 
