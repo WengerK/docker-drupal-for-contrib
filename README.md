@@ -65,7 +65,7 @@ Overview:
         restart: always
     
       db:
-        image: mariadb:10.3.7
+        image: mariadb:10.3.8
         environment:
           MYSQL_USER: drupal
           MYSQL_PASSWORD: drupal
@@ -79,7 +79,7 @@ Overview:
 3. Run Docker
 
 ```shell
-$ docker-compose build --pull --build-arg BASE_IMAGE_TAG=9.0 drupal
+$ docker-compose build --pull --build-arg BASE_IMAGE_TAG=10.0 drupal
 $ docker-compose up -d drupal
 # wait on Docker to be ready, especially MariaDB that takes many seconds to be up before install.
 $ docker-compose exec -u www-data drupal drush site-install standard --db-url="mysql://drupal:drupal@db/drupal" --site-name=Example -y
@@ -112,6 +112,10 @@ jobs:
       env: BASE_IMAGE_TAG="8.9"
     - name: D9.0
       env: BASE_IMAGE_TAG="9.0"
+    - name: D10.0
+      env: BASE_IMAGE_TAG="10.0"
+    - name: D11.0
+      env: BASE_IMAGE_TAG="11.0"
 
 before_install:
   - docker-compose build --pull --build-arg BASE_IMAGE_TAG=${BASE_IMAGE_TAG} drupal
@@ -140,14 +144,14 @@ jobs:
 
     strategy:
       matrix:
-        drupal_version: ['8.9', '9.0']
+        drupal_version: ['8.9', '9.0', '9.1', '10.0', '10.1', '10.2']
         module: ['my_module']
         experimental: [ false ]
         include:
-          - drupal_version: '9.1'
+          - drupal_version: '10.3'
             module: 'my_module'
             experimental: true
-          - drupal_version: '10.0'
+          - drupal_version: '11.0'
             module: 'my_module'
             experimental: true
 
