@@ -13,11 +13,11 @@ commandTests:
   - name: 'Drupal version'
     command: 'drush'
     args: ['status']
-    expectedOutput: ['Drupal version\s+:\s+10\.3\.(alpha|beta|dev|rc|\d+)']
+    expectedOutput: ['Drupal version\s+:\s+10\.3\.(x|\d+)(-(alpha|beta|dev|rc))?']
   - name: 'Drupal Core Dev version'
     command: bash
     args: ['-c', 'composer show drupal/core-dev']
-    expectedOutput: ['versions\s+:\s\* 10\.3\.(x|0)(-(alpha|beta|dev|rc))?']
+    expectedOutput: ['versions\s+:\s\* 10\.3\.(x|\d+)(-(alpha|beta|dev|rc))?']
   - name: 'Drush location'
     command: 'drush'
     args: ['status']
