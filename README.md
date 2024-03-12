@@ -9,7 +9,7 @@ All of those images serve the same purpose, **integrate Docker into a complete D
 
 This image is way different as we don't want to solve the Docker integration with Drupal but give a **solution to setup a Docker on Contributions modules or themes**.
 
-I see way too many developers creating awesome modules and struggling to test them by having to bootstrap a complete clean Drupal 8/9 environment and symlinks the custom modules/themes inside it.
+I see way too many developers creating awesome modules and struggling to test them by having to bootstrap a complete clean Drupal 8/9/10/11 environment and symlinks the custom modules/themes inside it.
 With this Docker image, I want to highly simplify this process by having a containerized Drupal 8/9 used for manual or automated testing of modules/themes Contributions projects.
 
 ## Docker Images
@@ -25,6 +25,7 @@ Overview:
 | Supported tags and respective `Dockerfile` links                                                                 | Drupal   |
 |------------------------------------------------------------------------------------------------------------------|----------|
 | `11.x-dev` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/11/11.0/Dockerfile) | 11.0-dev |
+| `10.3` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.3/Dockerfile)     | 10.3.0+  |
 | `10.2` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.2/Dockerfile)     | 10.2.0+  |
 | `10.1` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.1/Dockerfile)     | 10.1.0+  |
 | `10.0` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.0/Dockerfile)     | 10.0.0+  |
