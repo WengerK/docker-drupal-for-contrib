@@ -25,7 +25,7 @@ commandTests:
   - name: 'Drush version'
     command: 'drush'
     args: ['status']
-    expectedOutput: ['Drush version\s+:\s+12\.\d\.\d']
+    expectedOutput: ['Drush version\s+:\s+13\.x[\-alpha\d|\-beta\d|\-dev|\-rc\d|\d*]']
   - name: 'PHPUnit location'
     command: 'which'
     args: ['phpunit']
