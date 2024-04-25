@@ -1,5 +1,5 @@
 ARG BASE_IMAGE_TAG
-FROM drupal:${BASE_IMAGE_TAG}-apache
+FROM drupal:${BASE_IMAGE_TAG}-php8.3-apache
 
 ARG DRUPAL_VER
 
@@ -29,10 +29,6 @@ RUN curl -OL https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait
 # installed into the vendor directory.
 RUN composer config --no-interaction allow-plugins true
 
-# Install Drush.
-# Drush will be heavily use to setup a working Drupal environment.
-RUN COMPOSER_MEMORY_LIMIT=-1 composer require drush/drush:^12.0
-
 # Prepare for Drupal 11.0 upgrade.
 # @see https://www.drupal.org/docs/upgrading-drupal/upgrading-from-drupal-8-to-drupal-9-or-higher
 RUN composer require drupal/core-recommended:~${DRUPAL_VER} --update-with-all-dependencies --no-update
@@ -41,8 +37,12 @@ RUN composer require drupal/core-dev:~${DRUPAL_VER} --dev --update-with-all-depe
 # Set the minimum stability to "dev" to allow installing unstable Drupal Core.
 RUN composer config minimum-stability dev
 
-# Perform Drupal 10.1 installation.
+# Perform Drupal 11.0-dev installation.
 RUN COMPOSER_MEMORY_LIMIT=-1 composer update --with-all-dependencies
+
+# Install Drush.
+# Drush will be heavily use to setup a working Drupal environment.
+RUN composer require drush/drush:^13.0 --with-all-dependencies
 
 # Clean repository.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
