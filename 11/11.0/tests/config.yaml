@@ -33,7 +33,7 @@ commandTests:
   - name: 'PHPUnit version'
     command: 'phpunit'
     args: ['--version']
-    expectedOutput: ['^PHPUnit 9\.\d\.\d']
+    expectedOutput: ['^PHPUnit 10\.\d\.\d']
 fileExistenceTests:
   - name: 'Root'
     path: '/'
