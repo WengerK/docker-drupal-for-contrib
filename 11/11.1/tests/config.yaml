@@ -2,7 +2,7 @@ schemaVersion: '2.0.0'
 metadataTest:
   envVars:
     - key: 'DRUPAL_VER'
-      value: '11.0'
+      value: '11.1'
   workdir: '/opt/drupal'
   exposedPorts: ['80']
 commandTests:
@@ -21,7 +21,7 @@ commandTests:
   - name: 'Drupal Core Dev version'
     command: bash
     args: ['-c', 'composer show drupal/core-dev']
-    expectedOutput: ['versions\s+:\s\* 11\.0(\.\d)*(\-alpha\d|\-beta\d|\-dev|\-rc\d|\d*)']
+    expectedOutput: ['versions\s+:\s\* 11\.(x|\d+)(-(alpha|beta|dev|rc))?']
   - name: 'Drush location'
     command: 'drush'
     args: ['status']
