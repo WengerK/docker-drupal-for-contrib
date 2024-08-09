@@ -38,6 +38,10 @@ commandTests:
     command: 'phpunit'
     args: ['--version']
     expectedOutput: ['^PHPUnit 10\.\d\.\d']
+  - name: 'PHPUnit configuration file should works'
+    command: 'phpunit'
+    args: ['-c', '/var/www/html/phpunit.xml']
+    exitCode: 0
 fileExistenceTests:
   - name: 'Root'
     path: '/'
