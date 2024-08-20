@@ -34,6 +34,12 @@ commandTests:
     command: 'phpunit'
     args: ['--version']
     expectedOutput: ['^PHPUnit 9\.\d\.\d']
+  - name: 'PHPUnit configuration file should works'
+    command: 'phpunit'
+    args: ['-c', '/var/www/html/phpunit.xml', '--group', 'foo']
+    exitCode: 0
+    expectedOutput: [ 'No tests executed!' ]
+    excludedOutput: [ 'is not a writable directory.' ]
 fileExistenceTests:
   - name: 'Root'
     path: '/'
@@ -58,6 +64,12 @@ fileExistenceTests:
     gid: 0
   - name: 'Drupal Public'
     path: '/opt/drupal/web/sites/default'
+    shouldExist: true
+    permissions: 'drwxr-xr-x'
+    uid: 33
+    gid: 33
+  - name: 'Drupal PHPUnit Output'
+    path: '/opt/drupal/web/sites/default/files/simpletest/browser_output'
     shouldExist: true
     permissions: 'drwxr-xr-x'
     uid: 33
