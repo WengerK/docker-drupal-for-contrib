@@ -49,3 +49,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Copy a default template for PHPUnit testing.
 COPY templates/phpunit.xml /opt/drupal/web/phpunit.xml
+
+# Create the output directory for PHPUnit.
+RUN mkdir -p /opt/drupal/web/sites/default/files/simpletest/browser_output
+RUN chown www-data:www-data /opt/drupal/web/sites/default/files/simpletest/browser_output

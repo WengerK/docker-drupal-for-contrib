@@ -65,7 +65,7 @@
         overridden by the value set for the "BROWSERTEST_OUTPUT_DIRECTORY"
         environment variable.
       -->
-      <parameter name="outputDirectory" value="sites/simpletest/browser_output"/>
+      <parameter name="outputDirectory" value="/opt/drupal/web/sites/default/files/simpletest/browser_output"/>
       <!-- By default browser tests print the individual links in the test run
         report. To avoid overcrowding the output in CI environments, you can
         set the "verbose" parameter or the "BROWSERTEST_OUTPUT_VERBOSE"
