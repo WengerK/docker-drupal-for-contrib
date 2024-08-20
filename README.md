@@ -26,7 +26,8 @@ Overview:
 |--------------------------------------------------------------------------------------------------------------|----------|
 | `11.1` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/11/11.1/Dockerfile) | 11.x-dev |
 | `11.0` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/11/11.0/Dockerfile) | 11.0.x   |
-| `10.3` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.3/Dockerfile) | 10.3.0+  |
+| `10.4` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.4/Dockerfile) | 10.4-dev |
+| `10.3` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.3/Dockerfile) | 10.3-dev |
 | `10.2` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.2/Dockerfile) | 10.2.0+  |
 | `10.1` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.1/Dockerfile) | 10.1.0+  |
 | `10.0` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.0/Dockerfile) | 10.0.0+  |
