@@ -42,6 +42,8 @@ commandTests:
     command: 'phpunit'
     args: ['-c', '/var/www/html/phpunit.xml']
     exitCode: 0
+    expectedOutput: [ 'No tests executed!' ]
+    excludedOutput: [ 'is not a writable directory.' ]
 fileExistenceTests:
   - name: 'Root'
     path: '/'
@@ -70,3 +72,4 @@ fileExistenceTests:
     permissions: 'drwxr-xr-x'
     uid: 33
     gid: 33
+
