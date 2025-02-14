@@ -17,11 +17,11 @@ commandTests:
   - name: 'Drupal version'
     command: 'drush'
     args: ['status']
-    expectedOutput: ['Drupal version\s+:\s+11\.0(\.\d)*(\-alpha\d|\-beta\d|\-dev|\-rc\d|\d*)']
+    expectedOutput: ['Drupal version\s+:\s+11\.1(\.\d)*(\-alpha\d|\-beta\d|\-dev|\-rc\d|\d*)']
   - name: 'Drupal Core Dev version'
     command: bash
     args: ['-c', 'composer show drupal/core-dev']
-    expectedOutput: ['versions\s+:\s\* 11\.(x|\d+)(-(alpha|beta|dev|rc))?']
+    expectedOutput: ['versions\s+:\s\* 11\.1(\.\d)*(\-alpha\d|\-beta\d|\-dev|\-rc\d|\d*)']
   - name: 'Drush location'
     command: 'drush'
     args: ['status']
@@ -72,3 +72,4 @@ fileExistenceTests:
     permissions: 'drwxr-xr-x'
     uid: 33
     gid: 33
+
