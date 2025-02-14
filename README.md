@@ -24,7 +24,7 @@ Overview:
 
 | Supported tags and respective `Dockerfile` links                                                             | Drupal   |
 |--------------------------------------------------------------------------------------------------------------|----------|
-| `11.1` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/11/11.1/Dockerfile) | 11.x-dev |
+| `11.1` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/11/11.1/Dockerfile) | 11.1.x   |
 | `11.0` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/11/11.0/Dockerfile) | 11.0.x   |
 | `10.4` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.4/Dockerfile) | 10.4-dev |
 | `10.3` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.3/Dockerfile) | 10.3.x   |
@@ -32,27 +32,19 @@ Overview:
 | `10.1` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.1/Dockerfile) | 10.1.x   |
 | `10.0` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.0/Dockerfile) | 10.0.x   |
 | `9.5` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.5/Dockerfile)    | 9.5.x    |
-| `9.4` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.4/Dockerfile)    | 9.4.x    |
-| `9.3` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.3/Dockerfile)    | 9.3.x    |
-| `9.2` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.2/Dockerfile)    | 9.2.x    |
-| `9.1` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.1/Dockerfile)    | 9.1.x    |
-| `9.0` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/9/9.0/Dockerfile)    | 9.0.x    |
-| `8.9` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/8/8.9/Dockerfile)    | 8.9.x    |
 
 ## Usage in a Drupal Contribution Modules/Themes
 
 1. Create a `Dockerfile` file at the root level of your repository
 
     ```
-    ARG BASE_IMAGE_TAG=8.9.0
+    ARG BASE_IMAGE_TAG=10.4
     FROM wengerk/drupal-for-contrib:${BASE_IMAGE_TAG}
     ```
 
 2. Create a `docker-compose.yml` file at the root level of your repository
 
     ```yaml
-    version: '3.6'
-    
     services:
     
       drupal:
@@ -67,7 +59,7 @@ Overview:
         restart: always
     
       db:
-        image: mariadb:10.3.8
+        image: mariadb:10.6
         environment:
           MYSQL_USER: drupal
           MYSQL_PASSWORD: drupal
@@ -81,7 +73,7 @@ Overview:
 3. Run Docker
 
 ```shell
-$ docker-compose build --pull --build-arg BASE_IMAGE_TAG=10.0 drupal
+$ docker-compose build --pull --build-arg BASE_IMAGE_TAG=10.4 drupal
 $ docker-compose up -d drupal
 # wait on Docker to be ready, especially MariaDB that takes many seconds to be up before install.
 $ docker-compose exec -u www-data drupal drush site-install standard --db-url="mysql://drupal:drupal@db/drupal" --site-name=Example -y
@@ -146,14 +138,14 @@ jobs:
 
     strategy:
       matrix:
-        drupal_version: ['8.9', '9.0', '9.1', '10.0', '10.1', '10.2']
+        drupal_version: ['8.9', '9.0', '9.1', '10.0', '10.1', '10.2', '11.0']
         module: ['my_module']
         experimental: [ false ]
         include:
           - drupal_version: '10.3'
             module: 'my_module'
             experimental: true
-          - drupal_version: '11.0'
+          - drupal_version: '11.1'
             module: 'my_module'
             experimental: true
 
