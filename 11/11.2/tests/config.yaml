@@ -1,0 +1,74 @@
+schemaVersion: '2.0.0'
+metadataTest:
+  envVars:
+    - key: 'DRUPAL_VER'
+      value: '11.2'
+  workdir: '/opt/drupal'
+  exposedPorts: ['80']
+commandTests:
+  - name: 'PHP'
+    command: 'php'
+    args: [ '-v' ]
+    expectedOutput: ['^PHP 8\.3\.\d']
+  - name: 'Drupal Root location'
+    command: 'drush'
+    args: ['status']
+    expectedOutput: ['Drupal root\s+:\s+/opt/drupal/web']
+  - name: 'Drupal version'
+    command: 'drush'
+    args: ['status']
+    expectedOutput: ['Drupal version\s+:\s+11\.2(\.\d)*(\-alpha\d|\-beta\d|\-dev|\-rc\d|\d*)']
+  - name: 'Drupal Core Dev version'
+    command: bash
+    args: ['-c', 'composer show drupal/core-dev']
+    expectedOutput: ['versions\s+:\s\* 11\.(x|\d+)(-(alpha|beta|dev|rc))?']
+  - name: 'Drush location'
+    command: 'drush'
+    args: ['status']
+    expectedOutput: ['Drush script\s+:\s+/opt/drupal/vendor/bin/drush']
+  - name: 'Drush version'
+    command: 'drush'
+    args: ['status']
+    expectedOutput: ['Drush\s+version\s*:\s*13(\.(x|\d))*(\-alpha\d|\-beta\d|\-dev|\-rc\d|\d*)']
+  - name: 'PHPUnit location'
+    command: 'which'
+    args: ['phpunit']
+    expectedOutput: ['/opt/drupal/vendor/bin/phpunit']
+  - name: 'PHPUnit version'
+    command: 'phpunit'
+    args: ['--version']
+    expectedOutput: ['^PHPUnit 10\.\d\.\d']
+  - name: 'PHPUnit configuration file should works'
+    command: 'phpunit'
+    args: ['-c', '/var/www/html/phpunit.xml']
+    exitCode: 0
+    expectedOutput: [ 'No tests executed!' ]
+    excludedOutput: [ 'is not a writable directory.' ]
+fileExistenceTests:
+  - name: 'Root'
+    path: '/'
+    shouldExist: true
+    permissions: 'drwxr-xr-x'
+    uid: 0
+    gid: 0
+  - name: 'PHPUnit default file'
+    path: '/opt/drupal/web/phpunit.xml'
+    shouldExist: true
+  - name: 'Wait-for-it script'
+    path: '/usr/local/bin/wait-for-it'
+    shouldExist: true
+    permissions: '-rwxr-xr-x'
+    uid: 0
+    gid: 0
+  - name: 'Drupal Root'
+    path: '/opt/drupal/web'
+    shouldExist: true
+    permissions: 'drwxr-xr-x'
+    uid: 0
+    gid: 0
+  - name: 'Drupal Public'
+    path: '/opt/drupal/web/sites/default'
+    shouldExist: true
+    permissions: 'drwxr-xr-x'
+    uid: 33
+    gid: 33
