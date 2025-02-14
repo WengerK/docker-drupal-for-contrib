@@ -47,6 +47,11 @@ RUN composer require drush/drush:^13.0 --with-all-dependencies
 # Clean repository.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Set proper permissions for Drupal files directory
+RUN mkdir -p /opt/drupal/web/sites/default/files
+RUN chown www-data:www-data /opt/drupal/web/sites/default/files
+RUN chmod -R 775 /opt/drupal/web/sites/default/files
+
 # Copy a default template for PHPUnit testing.
 COPY templates/phpunit.xml /opt/drupal/web/phpunit.xml
 
