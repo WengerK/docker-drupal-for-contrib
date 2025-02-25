@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        drupal_version: ['9.5', '10.0', '10.1', '10.2', '10.3', '10.4', '11.0', '11.1', '11.2']
+        drupal_version: ['9.5', '10.0', '10.1', '10.2', '10.3', '10.4', '10.5', '11.0', '11.1', '11.2']
         include:
           - drupal_version: '9.5'
             drupal_major: '9'
@@ -22,6 +22,8 @@ jobs:
           - drupal_version: '10.3'
             drupal_major: '10'
           - drupal_version: '10.4'
+            drupal_major: '10'
+          - drupal_version: '10.5'
             drupal_major: '10'
           - drupal_version: '11.0'
             drupal_major: '11'
@@ -50,7 +52,7 @@ jobs:
       ', github.ref)
     strategy:
       matrix:
-        drupal_version: ['9.5', '10.0', '10.1', '10.2', '10.3', '10.4', '11.0', '11.1', '11.2']
+        drupal_version: ['9.5', '10.0', '10.1', '10.2', '10.3', '10.4', '10.5', '11.0', '11.1', '11.2']
         include:
           - drupal_version: '9.5'
             drupal_major: '9'
@@ -63,6 +65,8 @@ jobs:
           - drupal_version: '10.3'
             drupal_major: '10'
           - drupal_version: '10.4'
+            drupal_major: '10'
+          - drupal_version: '10.5'
             drupal_major: '10'
           - drupal_version: '11.0'
             drupal_major: '11'
