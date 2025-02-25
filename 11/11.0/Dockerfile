@@ -44,6 +44,11 @@ RUN mkdir -p /opt/drupal/web/sites/default/files
 RUN chown www-data:www-data /opt/drupal/web/sites/default/files
 RUN chmod -R 775 /opt/drupal/web/sites/default/files
 
+# Set proper permissions for Drupal Simpletest directory.
+RUN mkdir -p /opt/drupal/web/sites/simpletest/
+RUN chown www-data:www-data /opt/drupal/web/sites/simpletest
+RUN chmod -R 775 /opt/drupal/web/sites/simpletest
+
 # Copy a default template for PHPUnit testing.
 COPY templates/phpunit.xml /opt/drupal/web/phpunit.xml
 

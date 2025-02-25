@@ -66,9 +66,21 @@ fileExistenceTests:
     permissions: 'drwxr-xr-x'
     uid: 0
     gid: 0
-  - name: 'Drupal Public'
+  - name: 'Drupal Default Site'
     path: '/opt/drupal/web/sites/default'
     shouldExist: true
     permissions: 'drwxr-xr-x'
+    uid: 33
+    gid: 33
+  - name: 'Drupal Default Site Files'
+    path: '/opt/drupal/web/sites/default/files'
+    shouldExist: true
+    permissions: 'drwxrwxr-x'
+    uid: 33
+    gid: 33
+  - name: 'Drupal Simpletest Site'
+    path: '/opt/drupal/web/sites/simpletest'
+    shouldExist: true
+    permissions: 'drwxrwxr-x'
     uid: 33
     gid: 33
