@@ -21,7 +21,7 @@ commandTests:
   - name: 'Drupal Core Dev version'
     command: bash
     args: ['-c', 'composer show drupal/core-dev']
-    expectedOutput: ['versions\s+:\s\* 11\.(x|\d+)(-(alpha|beta|dev|rc))?']
+    expectedOutput: ['versions\s+:\s\* 11\.2(\.\d)*(\-alpha\d|\-beta\d|\-dev|\-rc\d|\d*)']
   - name: 'Drush location'
     command: 'drush'
     args: ['status']
