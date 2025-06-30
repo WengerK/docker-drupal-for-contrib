@@ -28,7 +28,7 @@ Overview:
 | `11.2` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/11/11.2/Dockerfile) | 11.2.x  |
 | `11.1` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/11/11.1/Dockerfile) | 11.1.x   |
 | `11.0` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/11/11.0/Dockerfile) | 11.0.x   |
-| `10.5` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.5/Dockerfile) | 10.5-dev |
+| `10.5` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.5/Dockerfile) | 10.5.x   |
 | `10.4` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.4/Dockerfile) | 10.4.x   |
 | `10.3` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.3/Dockerfile) | 10.3.x   |
 | `10.2` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/10/10.2/Dockerfile) | 10.2.x   |
@@ -41,7 +41,7 @@ Overview:
 1. Create a `Dockerfile` file at the root level of your repository
 
     ```
-    ARG BASE_IMAGE_TAG=10.4
+    ARG BASE_IMAGE_TAG=10.5
     FROM wengerk/drupal-for-contrib:${BASE_IMAGE_TAG}
     ```
 
@@ -76,7 +76,7 @@ Overview:
 3. Run Docker
 
 ```shell
-$ docker-compose build --pull --build-arg BASE_IMAGE_TAG=10.4 drupal
+$ docker-compose build --pull --build-arg BASE_IMAGE_TAG=10.5 drupal
 $ docker-compose up -d drupal
 # wait on Docker to be ready, especially MariaDB that takes many seconds to be up before install.
 $ docker-compose exec -u www-data drupal drush site-install standard --db-url="mysql://drupal:drupal@db/drupal" --site-name=Example -y
