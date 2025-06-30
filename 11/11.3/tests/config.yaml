@@ -9,7 +9,7 @@ commandTests:
   - name: 'PHP'
     command: 'php'
     args: [ '-v' ]
-    expectedOutput: ['^PHP 8\.3\.\d']
+    expectedOutput: ['^PHP 8\.4\.\d']
   - name: 'Drupal Root location'
     command: 'drush'
     args: ['status']
