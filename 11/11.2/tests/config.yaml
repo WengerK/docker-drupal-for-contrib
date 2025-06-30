@@ -9,7 +9,7 @@ commandTests:
   - name: 'PHP'
     command: 'php'
     args: [ '-v' ]
-    expectedOutput: ['^PHP 8\.3\.\d']
+    expectedOutput: ['^PHP 8\.4\.\d']
   - name: 'Drupal Root location'
     command: 'drush'
     args: ['status']
@@ -21,7 +21,7 @@ commandTests:
   - name: 'Drupal Core Dev version'
     command: bash
     args: ['-c', 'composer show drupal/core-dev']
-    expectedOutput: ['versions\s+:\s\* 11\.(x|\d+)(-(alpha|beta|dev|rc))?']
+    expectedOutput: ['versions\s+:\s\* 11\.2(\.\d)*(\-alpha\d|\-beta\d|\-dev|\-rc\d|\d*)']
   - name: 'Drush location'
     command: 'drush'
     args: ['status']
@@ -37,7 +37,7 @@ commandTests:
   - name: 'PHPUnit version'
     command: 'phpunit'
     args: ['--version']
-    expectedOutput: ['^PHPUnit 10\.\d\.\d']
+    expectedOutput: ['^PHPUnit 11\.\d\.\d']
   - name: 'PHPUnit configuration file should works'
     command: 'phpunit'
     args: ['-c', '/var/www/html/phpunit.xml']
