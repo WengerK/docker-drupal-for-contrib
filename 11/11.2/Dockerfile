@@ -30,7 +30,7 @@ RUN curl -OL https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait
 RUN composer config --no-interaction allow-plugins true
 
 # Install Drupal Dev dependencies such as PHPUnit, Behat-Mink, ...
-RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev drupal/core-dev:~${DRUPAL_VERSION}
+RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev drupal/core-dev:~${DRUPAL_VERSION} -W
 
 # Install Drush.
 # Drush will be heavily use to setup a working Drupal environment.
