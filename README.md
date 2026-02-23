@@ -24,6 +24,7 @@ Overview:
 
 | Supported tags and respective `Dockerfile` links                                                             | Drupal   |
 |--------------------------------------------------------------------------------------------------------------|----------|
+| `11.4` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/11/11.4/Dockerfile) | 11.4-dev |
 | `11.3` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/11/11.3/Dockerfile) | 11.3-dev |
 | `11.2` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/11/11.2/Dockerfile) | 11.2.x  |
 | `11.1` [_(Dockerfile)_](https://github.com/wengerk/docker-drupal-for-contrib/tree/master/11/11.1/Dockerfile) | 11.1.x   |
