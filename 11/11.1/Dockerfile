@@ -29,6 +29,12 @@ RUN curl -OL https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait
 # installed into the vendor directory.
 RUN composer config --no-interaction allow-plugins true
 
+# Disable Composer's security advisories check blocking installs.
+# Old Drupal minor versions can pin dependency versions that later receive
+# advisories, which would otherwise fail the build even though we cannot
+# upgrade past the version pinned by drupal/core-recommended.
+RUN composer config --no-interaction "policy.advisories.block" false
+
 # Install Drupal Dev dependencies such as PHPUnit, Behat-Mink, ...
 RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev drupal/core-dev:~${DRUPAL_VERSION}
 
