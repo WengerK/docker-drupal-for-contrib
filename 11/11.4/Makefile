@@ -1,7 +1,7 @@
 DRUPAL_VER ?= 11.4
 DRUPAL_VER_MAJOR ?= $(shell echo "${DRUPAL_VER}" | grep -oE '^[0-9]+\.[0-9]+')
 
-BASE_IMAGE_TAG = 11.3
+BASE_IMAGE_TAG = 11.4
 ARCH_TO_BUILD ?= "linux/amd64"
 
 REPO = wengerk/drupal-for-contrib
