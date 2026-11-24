@@ -8,14 +8,15 @@ fi
 if ! [ -x "$(command -v container-structure-test)" ]; then
   echo -n "Install Google Container Structure Tests Framework for ${IMAGE} ..."
 
-  # Check install for Linux or MacOS.
-  if [[ $(uname -s) == Linux ]]
-  then
-      curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64 && chmod +x container-structure-test-linux-amd64 && sudo mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test
-  elif [[ $(uname -s) == Darwin ]]
-  then
-      curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test-darwin-amd64 && chmod +x container-structure-test-darwin-amd64 && sudo mv container-structure-test-darwin-amd64 /usr/local/bin/container-structure-test
+  # Download the binary matching the host OS (linux/darwin) and arch (amd64/arm64).
+  # No darwin-arm64 binary is published: macOS always uses amd64 (Rosetta).
+  CST_OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+  CST_ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/aarch64/arm64/')
+  if [[ "${CST_OS}" == darwin ]]; then
+    CST_ARCH=amd64
   fi
+  CST_BIN="container-structure-test-${CST_OS}-${CST_ARCH}"
+  curl -LO "https://storage.googleapis.com/container-structure-test/latest/${CST_BIN}" && chmod +x "${CST_BIN}" && sudo mv "${CST_BIN}" /usr/local/bin/container-structure-test
 fi
 
 if ! [ -x "$(command -v container-structure-test)" ]; then
